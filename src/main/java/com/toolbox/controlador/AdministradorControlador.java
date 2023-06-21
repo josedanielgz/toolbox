@@ -113,7 +113,7 @@ public class AdministradorControlador {
 	}
 
 	@GetMapping("/categorias/{categoria}")
-	public String mostrarCategoria(@PathVariable("categoria") String categoria, HttpServletRequest request, Model model){
+	public String mostrarTodaLaCategoria(@PathVariable("categoria") String categoria, HttpServletRequest request, Model model){
 		int admin_id = (int) request.getSession().getAttribute("admin_id");
 
 
@@ -122,6 +122,17 @@ public class AdministradorControlador {
 		model.addAttribute("admin",adm);
 		model.addAttribute("articulosFiltrados", list);
 		return "categorias";
+	}
+	
+	@GetMapping("/categorias/{categoria}/{articulo}")
+	public String mostrarArticuloDeCategoria(@PathVariable("categoria") String categoria, @PathVariable("articulo") String articulo, HttpServletRequest request, Model model){
+		int admin_id = (int) request.getSession().getAttribute("admin_id");
+		Integer id_articulo = Integer.parseInt(articulo);
+		Articulo articuloBuscado = this.articuloService.buscarPorIdyCategoria(id_articulo, categoria);
+		Administrador adm = this.administradorService.get(admin_id);
+		model.addAttribute("articuloBuscado",articuloBuscado);
+		model.addAttribute("admin",adm);
+		return "articulo_unico";
 	}
 	
 
