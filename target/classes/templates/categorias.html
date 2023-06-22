@@ -31,7 +31,7 @@
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{'/admin/inicio'}">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-box-open"></i>
 				</div>
@@ -44,9 +44,9 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" th:href="@{'/admin/perfil'}">
-					<i class="fas fa-house-user"></i> <span>Inicio</span>
-				</a></li>
+			<li class="nav-item"><a class="nav-link" th:href="@{'/admin/inicio'}">
+				<i class="fas fa-house-user"></i> <span>Inicio</span>
+			</a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -164,7 +164,7 @@
 							</a> <!-- Dropdown - User Information -->
 							<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
-								<a class="dropdown-item" th:href="@{/admin/perfil}"> <i
+								<a class="dropdown-item" th:href="@{/admin/inicio}"> <i
 										class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
 								</a> <a class="dropdown-item" href="#"> <i
 										class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -191,7 +191,6 @@
 				<!-- ACA INICIA EL CONTAINER -->
 
 				<div class="container-fluid">
-
 					  <!-- Topbar Search -->
 					  <form
 					  class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -210,15 +209,23 @@
 
 					<div class="card-columns">
 						<th:block th:each="list: ${articulosFiltrados}">
-						<div class="card">
-							
-							<img class="card-img-top" th:src="${list.imagen}" alt="Card image cap">
-							<div class="card-body">
-								<h5 class="card-title" th:text="${list.nombre}" style="font-weight: bolder;"></h5>
-								<p class="card-text" th:text="${list.categoria}" style="color: rgb(0, 94, 255);"></p>
-								<p class="card-text" th:text="${list.seccion_a}"></p>
+							<div class="card">
+
+								<!-- <a th:href="@{'/admin/categorias/' + ${'VPN'}}">VPN</a> -->
+								<!-- @GetMapping("/categorias/{categoria}/{articulo}") -->
+								<a th:href="@{'/admin/categorias/' + ${list.categoria} + '/' + ${list.id}}">
+									<img class="card-img-top" th:src="${list.imagen}" alt="Card image cap">
+								</a>
+								<div class="card-body">
+									<h5 class="card-title" th:text="${list.nombre}" style="font-weight: bolder;"></h5>
+
+									<p class="card-text" style="color: rgb(0, 94, 255);">
+										<a th:href="@{'/admin/categorias/' + ${list.categoria}}"
+											th:text="${list.categoria}"></a>
+									</p>
+									<p class="card-text" th:text="${list.seccion_a}"></p>
+								</div>
 							</div>
-						</div>
 						</th:block>
 					</div>
 

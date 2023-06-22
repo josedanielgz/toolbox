@@ -47,7 +47,7 @@ public class AdministradorControlador {
 
 		if (admin != null) {
 			request.getSession().setAttribute("admin_id", admin.getId());
-			return "redirect:/admin/perfil";
+			return "redirect:/admin/inicio";
 		} else {
 			att.addFlashAttribute("loginError", "Usuario o contraseña incorrecta");
 			return "redirect:/admin";
@@ -78,7 +78,7 @@ public class AdministradorControlador {
 	
 
 	
-	@GetMapping("/perfil")
+	@GetMapping("/inicio")
 	public String elPerfil(HttpServletRequest request, Model model) {
 		int admin_id = (int) request.getSession().getAttribute("admin_id");
  
@@ -87,7 +87,7 @@ public class AdministradorControlador {
 		Administrador adm = this.administradorService.get(admin_id);
 		model.addAttribute("admin",adm);
 		model.addAttribute("articulos", art);
-		return "perfil";
+		return "inicio";
 	}
 	
 	@GetMapping("/templateArticulo")
@@ -136,31 +136,19 @@ public class AdministradorControlador {
 		this.articuloService.save(nuevoArticulo);
 		return "categorias";
 	}
-	
+		
 	@GetMapping("/categorias/{categoria}/{articulo}")
 	public String mostrarArticuloDeCategoria(@PathVariable("categoria") String categoria, @PathVariable("articulo") String articulo, HttpServletRequest request, Model model){
 		int admin_id = (int) request.getSession().getAttribute("admin_id");
 		Integer id_articulo = Integer.parseInt(articulo);
-		Articulo articuloBuscado = this.articuloService.buscarPorIdyCategoria(id_articulo, categoria);
+		Articulo display = this.articuloService.buscarPorIdyCategoria(id_articulo, categoria);
 		Administrador adm = this.administradorService.get(admin_id);
-		model.addAttribute("articuloBuscado",articuloBuscado);
+		model.addAttribute("articuloID",display);
 		model.addAttribute("admin",adm);
-		return "redirect:/admin/categorias/{categoria}";
+		return "templateArticulo";
 	}
 	
 
-	// @GetMapping("/categorias")
-	// public String mostrarCategoriaIndividual(HttpServletRequest request, Model model){
-	// 	int admin_id = (int) request.getSession().getAttribute("admin_id");
-
-	// 	List<Articulo> list = articuloService.getByCategoria("Firma Digital");
-
-	// 	Administrador adm = this.administradorService.get(admin_id);
-	// 	model.addAttribute("admin",adm);
-	// 	model.addAttribute("articulosFiltrados", list);
-	// 	return "categorias";
-	// }
-	
 
 
 

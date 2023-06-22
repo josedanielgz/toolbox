@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin 2 - Tables</title>
+<title>Caja de herramientas</title>
 
 <!-- Custom fonts for this template-->
 <link th:href="@{/vendor/fontawesome-free/css/all.min.css}"
@@ -35,25 +35,36 @@
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
 
+<<<<<<< HEAD:src/main/resources/templates/perfil.html
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="index.html">
+=======
+
+
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{'/admin/inicio'}">
+>>>>>>> origin/pruebas:src/main/resources/templates/inicio.html
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-box-open"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">
-					Toolbox
-				</div>
+				<div class="sidebar-brand-text mx-3">Toolbox</div>
 			</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="index.html">
-					<i class="fas fa-house-user"></i> <span>Inicio</span>
+<<<<<<< HEAD:src/main/resources/templates/perfil.html
+			<li class="nav-item"><a class="nav-link"
+				th:href="@{'/admin/perfil'}"> <i class="fas fa-house-user"></i>
+					<span>Inicio</span>
 			</a></li>
+=======
+			<li class="nav-item"><a class="nav-link" th:href="@{'/admin/inicio'}">
+					<i class="fas fa-house-user"></i> <span>Inicio</span>
+				</a></li>
+>>>>>>> origin/pruebas:src/main/resources/templates/inicio.html
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -72,13 +83,32 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 
 						<h6 class="collapse-header">Herramientas:</h6>
-						<a class="collapse-item" href="buttons.html">VPN</a> 
-						<a class="collapse-item" href="cards.html">Firmas Digitales</a>
-						<a class="collapse-item" href="cards.html">Herramientas Diagnóstico</a>
-						<a class="collapse-item" href="cards.html">Antivirus</a>
-						<a class="collapse-item" href="cards.html">Encriptación de datos</a>
-						<a class="collapse-item" href="cards.html">Firewalls</a>
-			
+<<<<<<< HEAD:src/main/resources/templates/perfil.html
+						<a class="collapse-item"
+							th:href="@{'/admin/categorias/' + ${'VPN'}}">VPN</a> <a
+							class="collapse-item"
+							th:href="@{'/admin/categorias/' + ${'Firma Digital'}}">Firmas
+							Digitales</a> <a class="collapse-item"
+							th:href="@{'/admin/categorias/' + ${'Herramienta Diagnostico'}}">Herramientas
+							Diagnóstico</a> <a class="collapse-item"
+							th:href="@{'/admin/categorias/' + ${'Antivirus'}}">Antivirus</a>
+						<a class="collapse-item"
+							th:href="@{'/admin/categorias/' + ${'Encriptacion'}}">Encriptación
+							de datos</a> <a class="collapse-item"
+							th:href="@{'/admin/categorias/' + ${'Firewall'}}">Firewalls</a>
+=======
+						<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'VPN'}}">VPN</a>
+						<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'Firma Digital'}}">Firmas
+							Digitales</a>
+						<a class="collapse-item"
+							th:href="@{'/admin/categorias/' + ${'Herramienta Diagnostico'}}">Herramientas
+							Diagnóstico</a>
+						<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'Antivirus'}}">Antivirus</a>
+						<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'Encriptacion'}}">Encriptación de
+							datos</a>
+						<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'Firewall'}}">Firewalls</a>
+>>>>>>> origin/pruebas:src/main/resources/templates/inicio.html
+
 					</div>
 				</div></li>
 
@@ -158,9 +188,9 @@
 								</form>
 							</div></li>
 
-					
 
-				
+
+
 
 						<div class="topbar-divider d-none d-sm-block"></div>
 
@@ -173,7 +203,7 @@
 							href="#" id="userDropdown" role="button" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false"> <span
 								class="mr-2 d-none d-lg-inline text-gray-600 small"
-								th:text="${adm.nombre}"></span> 
+								th:text="${adm.nombre}"></span>
 						</a> <!-- Dropdown - User Information -->
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -207,105 +237,49 @@
 
 				<div class="container-fluid">
 
-					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">Tables</h1>
-					<p class="mb-4">
-						DataTables is a third party plugin that is used to generate the
-						demo table below. For more information about DataTables, please
-						visit the <a target="_blank" href="https://datatables.net">official
-							DataTables documentation</a>.
-					</p>
+					<div class="card-columns">
+						<th:block th:each="art: ${articulos}">
+							<div class="card">
 
-					<!-- DataTales Example -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">DataTables
-								Example</h6>
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
-									<thead>
-										<tr>
-											<th>Nombre</th>
-											<th>Codigo</th>
-											<th>Email</th>
-											<th>Estado</th>
-							
-										</tr>
-									</thead>
-						
-									<tbody th:each="doc: ${docentes}">
-										<tr>
-										<td th:text="${doc.nombre}"></td>
-										<td th:text="${doc.codigo}"></td>
-										<td th:text="${doc.email}"></td>
-										<td th:text="${doc.estado}"></td>
-										</tr>
-									
-									</tbody>
-								</table>
+<<<<<<< HEAD:src/main/resources/templates/perfil.html
+								<img class="card-img-top" th:src="${art.imagen}"
+									alt="Card image cap">
+								<div class="card-body">
+<!-- 									<h5 class="card-title" th:text="${art.nombre}" -->
+<!-- 										style="font-weight: bolder;"></h5> -->
+									<h5 class="card-title" style="font-weight: bolder;"><a th:href="@{/admin/categorias/{categoria}/{articulo}(categoria=${art.categoria},articulo=${art.id})}" th:text="${art.nombre}"></a></h5>
+									<p class="card-text" th:text="${art.categoria}"
+										style="color: rgb(0, 94, 255);"></p>
+=======
+								<!-- <a th:href="@{'/admin/categorias/' + ${'VPN'}}">VPN</a> -->
+								<!-- @GetMapping("/categorias/{categoria}/{articulo}") -->
+								<a th:href="@{'/admin/categorias/' + ${art.categoria} + '/' + ${art.id}}">
+									<img class="card-img-top" th:src="${art.imagen}" alt="Card image cap">
+								</a>
+								<div class="card-body">
+									<h5 class="card-title" th:text="${art.nombre}" style="font-weight: bolder;"></h5>
+
+									<p class="card-text" style="color: rgb(0, 94, 255);">
+										<a th:href="@{'/admin/categorias/' + ${art.categoria}}"
+											th:text="${art.categoria}"></a>
+									</p>
+>>>>>>> origin/pruebas:src/main/resources/templates/inicio.html
+									<p class="card-text" th:text="${art.seccion_a}"></p>
+								</div>
 							</div>
-						</div>
+						</th:block>
 					</div>
+
 
 				</div>
 
 
 
-			<!-- ACA ACABA EL CONTAINER -->
+				<!-- ACA ACABA EL CONTAINER -->
 
 
-			<!-- copia container en caso de que las cosas de vayan al carajísimo -->
+				<!-- copia container en caso de que las cosas de vayan al carajísimo -->
 
-			
-				<div class="container-fluid">
-
-					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">Tables</h1>
-					<p class="mb-4">
-						DataTables is a third party plugin that is used to generate the
-						demo table below. For more information about DataTables, please
-						visit the <a target="_blank" href="https://datatables.net">official
-							DataTables documentation</a>.
-					</p>
-
-					<!-- DataTales Example -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">DataTables
-								Example</h6>
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
-									<thead>
-										<tr>
-											<th>Nombre</th>
-											<th>Codigo</th>
-											<th>Email</th>
-											<th>Estado</th>
-							
-										</tr>
-									</thead>
-						
-									<tbody th:each="doc: ${docentes}">
-										<tr>
-										<td th:text="${doc.nombre}"></td>
-										<td th:text="${doc.codigo}"></td>
-										<td th:text="${doc.email}"></td>
-										<td th:text="${doc.estado}"></td>
-										</tr>
-									
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-
-				</div>
 
 
 
@@ -319,7 +293,7 @@
 			<footer class="sticky-footer bg-white">
 				<div class="container my-auto">
 					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2020</span>
+						<span>Copyright &copy; Toolbox 2023</span>
 					</div>
 				</div>
 			</footer>
