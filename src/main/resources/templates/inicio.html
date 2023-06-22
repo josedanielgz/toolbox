@@ -9,7 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Información articulo</title>
+	<title>Caja de herramientas</title>
 
 	<!-- Custom fonts for this template-->
 	<link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
@@ -45,8 +45,8 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item"><a class="nav-link" th:href="@{'/admin/inicio'}">
-				<i class="fas fa-house-user"></i> <span>Inicio</span>
-			</a></li>
+					<i class="fas fa-house-user"></i> <span>Inicio</span>
+				</a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -56,24 +56,27 @@
 
 			<!-- Nav Item - Pages Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#" data-toggle="collapse"
-				data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> <i
-					class="fas fa-fw fa-cog"></i> <span>Categorias</span>
-			</a>
-			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-				<div class="bg-white py-2 collapse-inner rounded">
+					data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> <i
+						class="fas fa-fw fa-cog"></i> <span>Categorias</span>
+				</a>
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
 
-				
-					<h6 class="collapse-header">Herramientas:</h6>
-					<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'VPN'}}">VPN</a>
-					<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'Firma Digital'}}">Firmas Digitales</a>
-					<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'Herramienta Diagnostico'}}">Herramientas Diagnóstico</a>
-					<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'Antivirus'}}">Antivirus</a>
-					<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'Encriptacion'}}">Encriptación de datos</a>
-					<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'Firewall'}}">Firewalls</a>
+						<h6 class="collapse-header">Herramientas:</h6>
+						<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'VPN'}}">VPN</a>
+						<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'Firma Digital'}}">Firmas
+							Digitales</a>
+						<a class="collapse-item"
+							th:href="@{'/admin/categorias/' + ${'Herramienta Diagnostico'}}">Herramientas
+							Diagnóstico</a>
+						<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'Antivirus'}}">Antivirus</a>
+						<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'Encriptacion'}}">Encriptación de
+							datos</a>
+						<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'Firewall'}}">Firewalls</a>
 
+					</div>
 				</div>
-			</div>
-		</li>
+			</li>
 
 
 			<!-- Divider -->
@@ -191,72 +194,30 @@
 				<!-- ACA INICIA EL CONTAINER -->
 
 				<div class="container-fluid">
-					<th:block th:each="display: ${articuloID}">
 
-					<div class="text-center" style="color: black;">
-						<div class="card" >
-							<div class="card-header" th:text="${display.nombre}"></div>
-							<!-- <div class="card-body" th:style="'background-image: url(' + ${display.imagen} + '); background-size: cover; background-repeat: no-repeat;'"> -->
-								<!-- <div class="card-body" style="background-color: #528ce2; border-color: #ff0000;"> -->
-									<div class="card-body" style="background-color: #528ce2;">
+					<div class="card-columns">
+						<th:block th:each="art: ${articulos}">
+							<div class="card">
 
-								<div class="row">
+								<!-- <a th:href="@{'/admin/categorias/' + ${'VPN'}}">VPN</a> -->
+								<!-- @GetMapping("/categorias/{categoria}/{articulo}") -->
+								<a th:href="@{'/admin/categorias/' + ${art.categoria} + '/' + ${art.id}}">
+									<img class="card-img-top" th:src="${art.imagen}" alt="Card image cap">
+								</a>
+								<div class="card-body">
+									<h5 class="card-title" th:text="${art.nombre}" style="font-weight: bolder;"></h5>
 
-									<div class="col-md-8">
-
-										<!-- Procedemos a crear 2 cartas -->
-										<div class="card" style="height: 50vh;">
-											<div class="card-body d-flex align-items-center justify-content-center">
-												<h5 class="card-text" th:text="${display.seccion_a}"></h5>
-											</div>
-										</div>
-<br>
-										<div class="card"  style="height: 50vh;">
-
-											<div class="card-body d-flex align-items-center justify-content-center">
-												<h5 class="card-text" th:text="${display.seccion_b}"></h5>
-
-											</div>
-
-										</div>
-
-
-									</div>
-
-									<div class="col-md-4">
-
-										<div class="card" style="border: 2px solid #528ce2;  background-color: #528ce2; height: 50vh;">
-
-											<div class="card-body">
-
-												<img class="card-img-top" th:src="${display.imagen}" alt="Card image cap">
-												<br>
-												<br>
-											
-												<a th:href="${display.link}" th:text="${display.link}" style="color: black;"></a>
-
-											</div>
-
-										</div>
-										<br>
-
-										<div class="card" style="border: 2px solid #000000; background-color: #528ce2; height: 50vh;">
-											<div class="card-body" style="position: relative; padding-bottom: 56.25%; height: 0;">
-											  <iframe th:src="@{https://www.youtube.com/embed/{url}(url=${display.linkTutorial})}" frameborder="1" allowfullscreen="0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 2px solid #528ce2;"></iframe>
-											</div>
-										  </div>
-
-
-									</div>
-
+									<p class="card-text" style="color: rgb(0, 94, 255);">
+										<a th:href="@{'/admin/categorias/' + ${art.categoria}}"
+											th:text="${art.categoria}"></a>
+									</p>
+									<p class="card-text" th:text="${art.seccion_a}"></p>
 								</div>
-
 							</div>
-
-
-						</div>
+						</th:block>
 					</div>
-					</th:block>
+
+
 				</div>
 
 

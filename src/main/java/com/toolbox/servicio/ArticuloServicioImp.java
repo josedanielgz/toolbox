@@ -43,6 +43,12 @@ public class ArticuloServicioImp extends GenericServiceImp<Articulo, Integer> im
     public List<Articulo> getByCategoria(String categoria) {
         return repositorioArticulo.findByCategoria(categoria);
     }
+
+	@Override
+	public Articulo buscarPorIdyCategoria(Integer id, String categoria) {
+		// TODO Auto-generated method stub
+		return repositorioArticulo.findByIdAndCategoria(id, categoria);
+	}
 	
 
 	
