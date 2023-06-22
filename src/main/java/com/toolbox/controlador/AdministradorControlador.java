@@ -134,7 +134,7 @@ public class AdministradorControlador {
 	@PostMapping("/categorias/{categoria}/crear")
 	public String accionCrearArticulo(@PathVariable("categoria") String categoria, HttpServletRequest request, @ModelAttribute Articulo nuevoArticulo, Model model){
 		this.articuloService.save(nuevoArticulo);
-		return "categorias";
+		return "redirect:/admin/categorias/{categoria}";
 	}
 		
 	@GetMapping("/categorias/{categoria}/{articulo}")

@@ -35,16 +35,8 @@
 			class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 			id="accordionSidebar">
 
-<<<<<<< HEAD:src/main/resources/templates/perfil.html
-			<!-- Sidebar - Brand -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.html">
-=======
-
-
 			<a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{'/admin/inicio'}">
->>>>>>> origin/pruebas:src/main/resources/templates/inicio.html
+>
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-box-open"></i>
 				</div>
@@ -55,17 +47,11 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-<<<<<<< HEAD:src/main/resources/templates/perfil.html
-			<li class="nav-item"><a class="nav-link"
-				th:href="@{'/admin/perfil'}"> <i class="fas fa-house-user"></i>
-					<span>Inicio</span>
-			</a></li>
-=======
+
 			<li class="nav-item"><a class="nav-link" th:href="@{'/admin/inicio'}">
 					<i class="fas fa-house-user"></i> <span>Inicio</span>
 				</a></li>
->>>>>>> origin/pruebas:src/main/resources/templates/inicio.html
-
+				
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
@@ -83,20 +69,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 
 						<h6 class="collapse-header">Herramientas:</h6>
-<<<<<<< HEAD:src/main/resources/templates/perfil.html
-						<a class="collapse-item"
-							th:href="@{'/admin/categorias/' + ${'VPN'}}">VPN</a> <a
-							class="collapse-item"
-							th:href="@{'/admin/categorias/' + ${'Firma Digital'}}">Firmas
-							Digitales</a> <a class="collapse-item"
-							th:href="@{'/admin/categorias/' + ${'Herramienta Diagnostico'}}">Herramientas
-							Diagnóstico</a> <a class="collapse-item"
-							th:href="@{'/admin/categorias/' + ${'Antivirus'}}">Antivirus</a>
-						<a class="collapse-item"
-							th:href="@{'/admin/categorias/' + ${'Encriptacion'}}">Encriptación
-							de datos</a> <a class="collapse-item"
-							th:href="@{'/admin/categorias/' + ${'Firewall'}}">Firewalls</a>
-=======
+
 						<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'VPN'}}">VPN</a>
 						<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'Firma Digital'}}">Firmas
 							Digitales</a>
@@ -107,8 +80,6 @@
 						<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'Encriptacion'}}">Encriptación de
 							datos</a>
 						<a class="collapse-item" th:href="@{'/admin/categorias/' + ${'Firewall'}}">Firewalls</a>
->>>>>>> origin/pruebas:src/main/resources/templates/inicio.html
-
 					</div>
 				</div></li>
 
@@ -241,16 +212,7 @@
 						<th:block th:each="art: ${articulos}">
 							<div class="card">
 
-<<<<<<< HEAD:src/main/resources/templates/perfil.html
-								<img class="card-img-top" th:src="${art.imagen}"
-									alt="Card image cap">
-								<div class="card-body">
-<!-- 									<h5 class="card-title" th:text="${art.nombre}" -->
-<!-- 										style="font-weight: bolder;"></h5> -->
-									<h5 class="card-title" style="font-weight: bolder;"><a th:href="@{/admin/categorias/{categoria}/{articulo}(categoria=${art.categoria},articulo=${art.id})}" th:text="${art.nombre}"></a></h5>
-									<p class="card-text" th:text="${art.categoria}"
-										style="color: rgb(0, 94, 255);"></p>
-=======
+
 								<!-- <a th:href="@{'/admin/categorias/' + ${'VPN'}}">VPN</a> -->
 								<!-- @GetMapping("/categorias/{categoria}/{articulo}") -->
 								<a th:href="@{'/admin/categorias/' + ${art.categoria} + '/' + ${art.id}}">
@@ -263,7 +225,6 @@
 										<a th:href="@{'/admin/categorias/' + ${art.categoria}}"
 											th:text="${art.categoria}"></a>
 									</p>
->>>>>>> origin/pruebas:src/main/resources/templates/inicio.html
 									<p class="card-text" th:text="${art.seccion_a}"></p>
 								</div>
 							</div>
