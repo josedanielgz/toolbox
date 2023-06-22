@@ -6,18 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.toolbox.modelo.Administrador;
 import com.toolbox.modelo.Articulo;
-
 import com.toolbox.servicio.AdministradorServicio;
 import com.toolbox.servicio.ArticuloServicio;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -33,10 +31,6 @@ public class AdministradorControlador {
 	@Autowired
 	private ArticuloServicio articuloService;
 	
-	
-	
-	
-
 	@GetMapping("")
 	public String login(HttpServletRequest request, HttpSession session, Model model) {
 		if (request.getSession().getAttribute("admin_id") != null) {
@@ -53,7 +47,7 @@ public class AdministradorControlador {
 
 		if (admin != null) {
 			request.getSession().setAttribute("admin_id", admin.getId());
-			return "redirect:/admin/perfil";
+			return "redirect:/admin/inicio";
 		} else {
 			att.addFlashAttribute("loginError", "Usuario o contraseña incorrecta");
 			return "redirect:/admin";
@@ -84,7 +78,7 @@ public class AdministradorControlador {
 	
 
 	
-	@GetMapping("/perfil")
+	@GetMapping("/inicio")
 	public String elPerfil(HttpServletRequest request, Model model) {
 		int admin_id = (int) request.getSession().getAttribute("admin_id");
  
@@ -93,7 +87,7 @@ public class AdministradorControlador {
 		Administrador adm = this.administradorService.get(admin_id);
 		model.addAttribute("admin",adm);
 		model.addAttribute("articulos", art);
-		return "perfil";
+		return "inicio";
 	}
 	
 	@GetMapping("/templateArticulo")
@@ -121,33 +115,40 @@ public class AdministradorControlador {
 		Administrador adm = this.administradorService.get(admin_id);
 		model.addAttribute("admin",adm);
 		model.addAttribute("articulosFiltrados", list);
+		model.addAttribute("categoriaActual", categoria);
 		return "categorias";
 	}
+
+	// Redirige al formulario donde se van a crear los artículos
+	@GetMapping("/categorias/{categoria}/crear")
+	public String formularioCrearArticulo(@PathVariable("categoria") String categoria, HttpServletRequest request, @ModelAttribute Articulo nuevoArticulo, Model model){
+		int admin_id = (int) request.getSession().getAttribute("admin_id");
+		Administrador adm = this.administradorService.get(admin_id);
+		model.addAttribute("nuevoArticulo", new Articulo());
+		model.addAttribute("categoriaActual", categoria);
+		model.addAttribute("admin",adm);
+		return "crear_articulo";
+	}
 	
+	// Acción de crear un artículo
+	@PostMapping("/categorias/{categoria}/crear")
+	public String accionCrearArticulo(@PathVariable("categoria") String categoria, HttpServletRequest request, @ModelAttribute Articulo nuevoArticulo, Model model){
+		this.articuloService.save(nuevoArticulo);
+		return "redirect:/admin/categorias/{categoria}";
+	}
+		
 	@GetMapping("/categorias/{categoria}/{articulo}")
 	public String mostrarArticuloDeCategoria(@PathVariable("categoria") String categoria, @PathVariable("articulo") String articulo, HttpServletRequest request, Model model){
 		int admin_id = (int) request.getSession().getAttribute("admin_id");
 		Integer id_articulo = Integer.parseInt(articulo);
-		Articulo articuloBuscado = this.articuloService.buscarPorIdyCategoria(id_articulo, categoria);
+		Articulo display = this.articuloService.buscarPorIdyCategoria(id_articulo, categoria);
 		Administrador adm = this.administradorService.get(admin_id);
-		model.addAttribute("articuloBuscado",articuloBuscado);
+		model.addAttribute("articuloID",display);
 		model.addAttribute("admin",adm);
-		return "articulo_unico";
+		return "templateArticulo";
 	}
 	
 
-	// @GetMapping("/categorias")
-	// public String mostrarCategoriaIndividual(HttpServletRequest request, Model model){
-	// 	int admin_id = (int) request.getSession().getAttribute("admin_id");
-
-	// 	List<Articulo> list = articuloService.getByCategoria("Firma Digital");
-
-	// 	Administrador adm = this.administradorService.get(admin_id);
-	// 	model.addAttribute("admin",adm);
-	// 	model.addAttribute("articulosFiltrados", list);
-	// 	return "categorias";
-	// }
-	
 
 
 

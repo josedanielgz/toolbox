@@ -46,7 +46,6 @@ public class ArticuloServicioImp extends GenericServiceImp<Articulo, Integer> im
 
 	@Override
 	public Articulo buscarPorIdyCategoria(Integer id, String categoria) {
-		// TODO Auto-generated method stub
 		return repositorioArticulo.findByIdAndCategoria(id, categoria);
 	}
 	
