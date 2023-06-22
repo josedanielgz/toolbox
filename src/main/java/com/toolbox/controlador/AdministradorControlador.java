@@ -31,10 +31,6 @@ public class AdministradorControlador {
 	@Autowired
 	private ArticuloServicio articuloService;
 	
-	
-	
-	
-
 	@GetMapping("")
 	public String login(HttpServletRequest request, HttpSession session, Model model) {
 		if (request.getSession().getAttribute("admin_id") != null) {
@@ -119,6 +115,7 @@ public class AdministradorControlador {
 		Administrador adm = this.administradorService.get(admin_id);
 		model.addAttribute("admin",adm);
 		model.addAttribute("articulosFiltrados", list);
+		model.addAttribute("categoriaActual", categoria);
 		return "categorias";
 	}
 
@@ -127,6 +124,7 @@ public class AdministradorControlador {
 	public String formularioCrearArticulo(@PathVariable("categoria") String categoria, HttpServletRequest request, @ModelAttribute Articulo nuevoArticulo, Model model){
 		int admin_id = (int) request.getSession().getAttribute("admin_id");
 		Administrador adm = this.administradorService.get(admin_id);
+		model.addAttribute("nuevoArticulo", new Articulo());
 		model.addAttribute("categoriaActual", categoria);
 		model.addAttribute("admin",adm);
 		return "crear_articulo";
@@ -135,7 +133,7 @@ public class AdministradorControlador {
 	// Acción de crear un artículo
 	@PostMapping("/categorias/{categoria}/crear")
 	public String accionCrearArticulo(@PathVariable("categoria") String categoria, HttpServletRequest request, @ModelAttribute Articulo nuevoArticulo, Model model){
-		int admin_id = (int) request.getSession().getAttribute("admin_id");
+		this.articuloService.save(nuevoArticulo);
 		return "categorias";
 	}
 	
@@ -147,7 +145,7 @@ public class AdministradorControlador {
 		Administrador adm = this.administradorService.get(admin_id);
 		model.addAttribute("articuloBuscado",articuloBuscado);
 		model.addAttribute("admin",adm);
-		return "articulo_unico";
+		return "redirect:/admin/categorias/{categoria}";
 	}
 	
 

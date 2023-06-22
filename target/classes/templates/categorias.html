@@ -205,6 +205,8 @@
 						  </div>
 					  </div>
 				  </form>
+				  
+				  <a th:href="@{/admin/categorias/{categoria}/crear(categoria=${categoriaActual})}" class="btn btn-primary" role="button">Crear un nuevo artículo</a>
 
 					<div class="card-columns">
 						<th:block th:each="list: ${articulosFiltrados}">

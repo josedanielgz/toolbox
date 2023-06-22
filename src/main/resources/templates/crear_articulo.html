@@ -212,27 +212,45 @@
 
 				<div class="container-fluid">
 					<div class="text-center">
-					<h3>Creando un artículo nuevo de la categoría [[${categoriaActual}]]</h3>
+						<h3>Creando un artículo nuevo de la categoría
+							[[${categoriaActual}]]</h3>
 						<form action="#"
 							th:action="@{/admin/categorias/{categoria}/crear(categoria=${categoriaActual})}"
 							th:object="${nuevoArticulo}" method="post">
 							<div class="form-group">
 
-								<input type="hidden" id="nombre" name="nombre"
+								<input type="text" id="nombre" name="nombre"
 									class="form-control" th:field="*{nombre}" /> <label
-									for="descripcion">Nombre</label>
-								<input type="hidden"
-									id="categorias" name="categoria" class="form-control"
-									th:field="*{categoria}" th:value="${categoriaActual}"/>
-									
-								<input type="text" id="breveDescripcion"
-									name="breveDescripcion" class="form-control"
-									th:field="*{breveDescripcion}" /> <label for="tipo">Breve descripción</label>
-									
-									<input type="text" id="imagen"
-									name="imagen" class="form-control"
-									th:field="*{imagen}" /> <label for="tipo">Enlace de la imagen</label>
+									for="descripcion">Nombre</label> <input type="hidden"
+									id="categorias" name="nuevoArticulo.categoria"
+									class="form-control" th:value="${categoriaActual}" />
 							</div>
+
+							<div class="form-group">
+								<input type="text" id="breveDescripcion" name="breveDescripcion"
+									class="form-control" th:field="*{breveDescripcion}" /> <label
+									for="tipo">Breve descripción</label> <input type="text"
+									id="imagen" name="imagen" class="form-control"
+									th:field="*{imagen}" /> <label for="tipo">Enlace de la
+									imagen</label>
+							</div>
+
+							<div class="form-group">
+								<input type="text" id="link" name="link" class="form-control"
+									th:field="*{link}" /> <label for="tipo">Link</label>
+									
+									<input type="text" id="linkTutorial" name="linkTutorial" class="form-control"
+									th:field="*{linkTutorial}" /> <label for="tipo">Link Tutorial</label>
+							</div>
+							
+							<div class="form-group">
+								<input type="text" id="seccion_a" name="link" class="form-control"
+									th:field="*{seccion_a}" /> <label for="seccion_a">Sección A</label>
+									
+									<input type="text" id="seccion_b" name="seccion_b" class="form-control"
+									th:field="*{seccion_b}" /> <label for="tipo">Sección B</label>
+							</div>
+
 							<button type="submit" class="btn btn-primary">Enviar</button>
 						</form>
 					</div>

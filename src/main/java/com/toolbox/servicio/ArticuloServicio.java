@@ -14,5 +14,6 @@ public interface ArticuloServicio extends GenericService<Articulo, Integer>{
     public List<Articulo> getByCategoria(String categoria);
 
     public Articulo buscarPorIdyCategoria(Integer id, String categoria);
+
 }
 
